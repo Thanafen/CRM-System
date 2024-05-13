@@ -1,10 +1,55 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>Manage Contacts</title>
+    <!-- Link to Bootstrap CSS -->
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"  />
 </head>
 <body>
-$END$
+<div class="btn btn-primary mx-5 align-bottom" onclick="backButton()">Back</div>
+
+<div class="container-fluid text-center">
+    <div><h1>View Contacts</h1></div>
+
+    <div class="m-3">
+        <!-- Link to Add New User page -->
+        <a class="h3" th:href="@{/contacts/new}">Add New Contact</a>
+    </div>
+
+    <div>
+        <table class="table table-bordered">
+            <thead class="thead-dark">
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Employee Name</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="contact : ${listContacts}">
+                <td th:text="${contact.contact_id}"></td>
+                <td th:text="${contact.clientName}"></td>
+                <td th:text="${contact.description}"></td>
+                <td th:text="${contact.employee}"></td>
+                <td th:text="${contact.contactStatus}"></td>
+                <td>
+                    <!-- Link to Edit Contact page -->
+                    <a class="h4 mr-2" th:href="@{'/contacts/edit/' + ${contact.contact_id}}">Edit</a>
+                    <!-- Link to Delete Contact page -->
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<script type="text/javascript">
+    function backButton() {
+        window.location = "[[@{/}]]";
+    }
+</script>
 </body>
 </html>

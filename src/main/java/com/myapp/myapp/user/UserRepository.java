@@ -1,2 +1,8 @@
-package com.myapp.myapp.user;public interface UserRepository {
+package com.myapp.myapp.user;
+
+import org.springframework.data.repository.CrudRepository;
+
+public interface UserRepository extends CrudRepository<User, Integer> {
+    public Long countById(Integer id);
 }
+
